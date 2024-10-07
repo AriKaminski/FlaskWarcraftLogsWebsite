@@ -1,0 +1,8 @@
+# Ignore a specific file
+secret.py
+
+# Ignore a directory and everything inside it
+logs/
+
+# Ignore all `.log` files
+*.log

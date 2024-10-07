@@ -1,0 +1,34 @@
+/* Apply a light grey background to the entire page */
+body {
+  background-color: #73787c; /* Light grey */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main container holding all the boxes */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Individual boxes (80% width, centered) */
+.box {
+  width: 80%;
+  height: 10em;
+  background-color: white;
+  padding: 20px;
+  margin: 10px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Optional styling for text inside boxes */
+.box p {
+  font-size: 16px;
+  color: #333;
+}
