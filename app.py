@@ -84,10 +84,6 @@ def get_character_data(access_token, character_name, server_slug, server_region,
 
         if response.status_code == 200:
             character_data = response.json()
-
-            # For debugging: Print the returned data for the encounter
-            print(f"Data for encounter {encounter_id}: {character_data}")
-
             # Extract and process the JSON encounter rankings data
             try:
                 rankings_data = character_data['data']['characterData']['character']['encounterRankings']
@@ -96,7 +92,7 @@ def get_character_data(access_token, character_name, server_slug, server_region,
                 # Assuming `rankings_data` is now a JSON object with the ranking info
                 if rankings_data:
                     rank_percent = rankings_data['ranks'][0]['rankPercent']
-                    parses[encounter_id] = rank_percent
+                    parses[encounter_id] = int(rank_percent)
                 else:
                     print(f"No rankings data available for encounter {encounter_id}")
             except (KeyError, IndexError):
