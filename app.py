@@ -18,11 +18,11 @@ def get_token():
 @app.route('/')
 def home():
     access_token = get_oauth_token()
+    parses = get_boss_parses(access_token)
+    print('THIS IS THE PARSES')
+    print(parses)
 
-    if access_token:
-        parse1 = get_boss_parses(access_token)
-
-    return render_template('index.html')
+    return render_template('index.html', parses=parses)
 
 
 def get_oauth_token():
@@ -51,6 +51,7 @@ def get_oauth_token():
 
 def get_character_data(access_token, character_name, server_slug, server_region, encounter_ids):
     parses = {}
+    bossname = ''
 
     for encounter_id in encounter_ids:
         query = f"""
@@ -72,6 +73,22 @@ def get_character_data(access_token, character_name, server_slug, server_region,
         }}
         """
 
+        if encounter_id == 2902:
+            bossname = 'Ulgrax The Devourer'
+        elif encounter_id == 2917:
+            bossname = 'The Bloodbound Horror'
+        elif encounter_id == 2898:
+            bossname = 'Sikran, Captain of the Sureki'
+        elif encounter_id == 2918:
+            bossname = "Rasha'nan"
+        elif encounter_id == 2919:
+            bossname = "Broodtwister Ovi'nax"
+        elif encounter_id == 2920:
+            bossname = "Nexus-Princess Ky'veza"
+        elif encounter_id == 2921:
+            bossname = "The Silken Court"
+        elif encounter_id == 2922:
+            bossname = "Queen Ansurek"
         url = "https://www.warcraftlogs.com/api/v2/client"
         headers = {
             'Authorization': f'Bearer {access_token}',
@@ -91,13 +108,14 @@ def get_character_data(access_token, character_name, server_slug, server_region,
                 # Assuming `rankings_data` is now a JSON object with the ranking info
                 if rankings_data:
                     rank_percent = rankings_data['ranks'][0]['rankPercent']
-                    parses[encounter_id] = int(rank_percent)
+                    parses[bossname] = int(rank_percent)
                 else:
                     print(
                         f"No rankings data available for encounter {encounter_id}")
             except (KeyError, IndexError):
                 print(
                     f"Could not retrieve rank percent for encounter {encounter_id}")
+                parses[bossname] = 'N/A'
         else:
             print(
                 f"Failed to get data for encounter {encounter_id}: {response.status_code}, {response.text}")
@@ -123,6 +141,8 @@ def get_boss_parses(access_token):
         for encounter_id, rank_percent in character_parses.items():
             print(
                 f"Boss with encounter ID {encounter_id}: Rank Percent = {rank_percent}")
+
+    return character_parses
 
 
 if __name__ == "__main__":
