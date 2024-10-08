@@ -11,7 +11,7 @@ CLIENT_SECRET = secret.CLIENT_SECRET
 # API route to generate token or serve data
 @app.route('/get_token', methods=['GET'])
 def get_token():
-    token = get_oauth_token()  
+    token = get_oauth_token()
     return jsonify({'token': token})
 
 
@@ -22,7 +22,6 @@ def home():
     if access_token:
         parse1 = get_boss_parses(access_token)
 
-
     return render_template('index.html')
 
 
@@ -30,15 +29,15 @@ def get_oauth_token():
     # The URL for the OAuth token
     token_url = "https://www.warcraftlogs.com/oauth/token"
 
-    
     # Request payload
     data = {
         'grant_type': 'client_credentials'
     }
-    
+
     # Make the POST request with Basic Authentication
-    response = requests.post(token_url, data=data, auth=(CLIENT_ID, CLIENT_SECRET))
-    
+    response = requests.post(token_url, data=data,
+                             auth=(CLIENT_ID, CLIENT_SECRET))
+
     # Check if the request was successful
     if response.status_code == 200:
         # Parse the JSON response to get the token
@@ -94,30 +93,37 @@ def get_character_data(access_token, character_name, server_slug, server_region,
                     rank_percent = rankings_data['ranks'][0]['rankPercent']
                     parses[encounter_id] = int(rank_percent)
                 else:
-                    print(f"No rankings data available for encounter {encounter_id}")
+                    print(
+                        f"No rankings data available for encounter {encounter_id}")
             except (KeyError, IndexError):
-                print(f"Could not retrieve rank percent for encounter {encounter_id}")
+                print(
+                    f"Could not retrieve rank percent for encounter {encounter_id}")
         else:
-            print(f"Failed to get data for encounter {encounter_id}: {response.status_code}, {response.text}")
-    
+            print(
+                f"Failed to get data for encounter {encounter_id}: {response.status_code}, {response.text}")
+
     return parses
+
 
 def get_boss_parses(access_token):
     if access_token:
         character_name = 'Vannskii'         # Replace with your character name
-        server_slug = 'stormrage'            # Replace with your server slug (lowercase)
+        # Replace with your server slug (lowercase)
+        server_slug = 'stormrage'
         server_region = 'us'                 # Replace with your server region
 
         # List of encounter IDs for the bosses you're tracking
         encounter_ids = [2902, 2917, 2898, 2918, 2919, 2920, 2921, 2922]
 
         # Fetch parses for all the encounters
-        character_parses = get_character_data(access_token, character_name, server_slug, server_region, encounter_ids)
+        character_parses = get_character_data(
+            access_token, character_name, server_slug, server_region, encounter_ids)
 
         # Print the parse results for each boss
         for encounter_id, rank_percent in character_parses.items():
-            print(f"Boss with encounter ID {encounter_id}: Rank Percent = {rank_percent}")
-    
+            print(
+                f"Boss with encounter ID {encounter_id}: Rank Percent = {rank_percent}")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
