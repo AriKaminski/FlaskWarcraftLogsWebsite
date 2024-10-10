@@ -11,11 +11,34 @@
   </head>
   <body>
     <div class="container">
-      <div class="box">Vannskii - Stormrage</div>
-      <img
-        src="{{ url_for('static', filename='images/Mymage.jpg') }}"
-        alt="Logo"
-      />
+      <div class="box1">
+        <div class="pic-table-wrapper">
+          <!-- Left: Image -->
+          <div class="pic">
+            <img src="../static/images/Mymage.jpg" alt="Image description" />
+          </div>
+          {% if parses %}
+          <table border="1">
+            <thead>
+              <tr>
+                {% for encounter_id in parses.keys() %}
+                <th>{{ encounter_id }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {% for rank_percent in parses.values() %}
+                <td>{{ rank_percent }}</td>
+                {% endfor %}
+              </tr>
+            </tbody>
+          </table>
+          {% else %}
+          <p>No encounter data available at the moment.</p>
+          {% endif %}
+        </div>
+      </div>
     </div>
   </body>
 </html>

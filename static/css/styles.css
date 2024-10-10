@@ -15,11 +15,14 @@ body {
   margin-top: 20px;
 }
 
-/* Individual boxes (80% width, centered) */
-.box {
+/* Box with flex layout to align image and table side by side */
+.box1 {
+  display: flex;
+  justify-content: flex-start; /* Align image and table close together */
+  align-items: center; /* Vertically center image and table */
   width: 80%;
-  height: 10em;
-  background-color: white;
+  height: 16em;
+  background-color: #3fc7eb;
   padding: 20px;
   margin: 10px 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -27,8 +30,52 @@ body {
   text-align: center;
 }
 
-/* Optional styling for text inside boxes */
-.box p {
-  font-size: 16px;
-  color: #333;
+/* Image styling */
+img {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Flex container for the image and table */
+.pic-table-wrapper {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-start; /* Keep image and table close */
+  align-items: center;
+}
+
+/* Add this to reduce space between image and table */
+.pic {
+  margin-right: 80px; /* Adjust to reduce space between image and table */
+}
+
+/* Styling for table to reduce its width */
+table {
+  width: 50%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th,
+td {
+  width: 80px; /* Set a uniform width for table cells */
+  height: 50px; /* Set a uniform height for table cells */
+  text-align: center;
+  padding: 10px;
+}
+
+th {
+  background-color: #d2d4d6;
+  font-size: 14px;
+}
+
+td {
+  background-color: #d2d4d6;
+}
+
+table,
+th,
+td {
+  border: 2px solid black;
 }
