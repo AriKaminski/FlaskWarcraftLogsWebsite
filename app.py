@@ -2,7 +2,7 @@ from flask import Flask, jsonify, render_template
 import requests
 import secret
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 
 CLIENT_ID = secret.CLIENT_ID
 CLIENT_SECRET = secret.CLIENT_SECRET
