@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, render_template
 import requests
 import secret
+import os
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
@@ -191,5 +192,5 @@ def get_boss_parses_aaron(access_token):
     return character_parses
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
