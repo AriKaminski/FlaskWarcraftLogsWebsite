@@ -1,1 +1,1 @@
-web: gunicorn flaskwarcraftlogswebsite:app
+web: python flaskwarcraftlogswebsite:app
