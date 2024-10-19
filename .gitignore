@@ -6,3 +6,5 @@ logs/
 
 # Ignore all `.log` files
 *.log
+
+.venv/
