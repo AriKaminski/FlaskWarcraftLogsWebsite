@@ -19,10 +19,12 @@ def get_token():
 def home():
     access_token = get_oauth_token()
     parses = get_boss_parses(access_token)
+    phil_parses = get_boss_parses_phil(access_token)
+    aaron_parses = get_boss_parses_aaron(access_token)
     print('THIS IS THE PARSES')
     print(parses)
 
-    return render_template('index.html', parses=parses)
+    return render_template('index.html', parses=parses, phil_parses=phil_parses, aaron_parses=aaron_parses)
 
 
 def get_oauth_token():
@@ -126,6 +128,50 @@ def get_character_data(access_token, character_name, server_slug, server_region,
 def get_boss_parses(access_token):
     if access_token:
         character_name = 'Vannskii'         # Replace with your character name
+        # Replace with your server slug (lowercase)
+        server_slug = 'stormrage'
+        server_region = 'us'                 # Replace with your server region
+
+        # List of encounter IDs for the bosses you're tracking
+        encounter_ids = [2902, 2917, 2898, 2918, 2919, 2920, 2921, 2922]
+
+        # Fetch parses for all the encounters
+        character_parses = get_character_data(
+            access_token, character_name, server_slug, server_region, encounter_ids)
+
+        # Print the parse results for each boss
+        for encounter_id, rank_percent in character_parses.items():
+            print(
+                f"Boss with encounter ID {encounter_id}: Rank Percent = {rank_percent}")
+
+    return character_parses
+
+
+def get_boss_parses_phil(access_token):
+    if access_token:
+        character_name = 'Salastrin'         # Replace with your character name
+        # Replace with your server slug (lowercase)
+        server_slug = 'stormrage'
+        server_region = 'us'                 # Replace with your server region
+
+        # List of encounter IDs for the bosses you're tracking
+        encounter_ids = [2902, 2917, 2898, 2918, 2919, 2920, 2921, 2922]
+
+        # Fetch parses for all the encounters
+        character_parses = get_character_data(
+            access_token, character_name, server_slug, server_region, encounter_ids)
+
+        # Print the parse results for each boss
+        for encounter_id, rank_percent in character_parses.items():
+            print(
+                f"Boss with encounter ID {encounter_id}: Rank Percent = {rank_percent}")
+
+    return character_parses
+
+
+def get_boss_parses_aaron(access_token):
+    if access_token:
+        character_name = 'Ronnÿmex'         # Replace with your character name
         # Replace with your server slug (lowercase)
         server_slug = 'stormrage'
         server_region = 'us'                 # Replace with your server region

@@ -11,7 +11,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="box1">
+      <div class="box box1">
         <h2 class="char-title">Vannskii - Stormrage</h2>
         <div class="pic-table-wrapper">
           <!-- Left: Image -->
@@ -30,6 +30,74 @@
             <tbody>
               <tr>
                 {% for rank_percent in parses.values() %}
+                <td>{{ rank_percent }}</td>
+                {% endfor %}
+              </tr>
+            </tbody>
+          </table>
+          {% else %}
+          <p>No encounter data available at the moment.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="box box2">
+        <h2 class="char-title">Salastrin - Stormrage</h2>
+        <div class="pic-table-wrapper">
+          <!-- Left: Image -->
+          <div class="pic">
+            <img
+              src="../static/images/PhilPriest.jpg"
+              alt="Image description"
+            />
+          </div>
+          {% if phil_parses %}
+          <table border="1">
+            <thead>
+              <tr>
+                {% for encounter_id in phil_parses.keys() %}
+                <th>{{ encounter_id }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {% for rank_percent in phil_parses.values() %}
+                <td>{{ rank_percent }}</td>
+                {% endfor %}
+              </tr>
+            </tbody>
+          </table>
+          {% else %}
+          <p>No encounter data available at the moment.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="box box3">
+        <h2 class="char-title">Ronnÿmex - Stormrage</h2>
+        <div class="pic-table-wrapper">
+          <!-- Left: Image -->
+          <div class="pic">
+            <img
+              src="../static/images/Aaronpally.jpg"
+              alt="Image description"
+            />
+          </div>
+          {% if aaron_parses %}
+          <table border="1">
+            <thead>
+              <tr>
+                {% for encounter_id in aaron_parses.keys() %}
+                <th>{{ encounter_id }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {% for rank_percent in aaron_parses.values() %}
                 <td>{{ rank_percent }}</td>
                 {% endfor %}
               </tr>

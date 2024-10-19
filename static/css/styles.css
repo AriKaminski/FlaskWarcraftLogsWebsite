@@ -1,6 +1,6 @@
 /* Apply a light grey background to the entire page */
 body {
-  background-color: #73787c; /* Light grey */
+  background-color: #cfcabb; /* Light grey */
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -16,19 +16,29 @@ body {
 }
 
 /* Box with flex layout to align image and table side by side */
-.box1 {
+.box {
   display: flex;
   flex-direction: column;
   justify-content: flex-start; /* Align image and table close together */
   align-items: center; /* Vertically center image and table */
   width: 80%;
   height: 16em;
-  background-color: #3fc7eb;
   padding: 20px;
   margin: 10px 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   text-align: center;
+}
+.box1 {
+  background-color: #3fc7eb;
+}
+
+.box2 {
+  background-color: #ffffff;
+}
+
+.box3 {
+  background-color: #f48cba;
 }
 
 /* Styling for the title */
@@ -61,7 +71,7 @@ img {
 
 /* Styling for table to reduce its width */
 table {
-  width: 50%;
+  width: 70%;
   border-collapse: collapse;
   table-layout: fixed;
 }
